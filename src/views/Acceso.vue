@@ -1,21 +1,24 @@
 <template>
     <div>
         <h1>Login</h1>
+
         <form  @submit.prevent="ingresoUsuario({email: email, password: pass})">
             <input 
                 type="email" 
                 placeholder="Ingrese email"
-                v-model="email"
+                v-model=email
             >
 
             <input 
                 type="password" 
                 placeholder="Ingrese password"
-                v-model="pass"
+                v-model=pass
             >
+            <button type="submit">Login</button>
         </form>
-        <button type="submit">Login</button>
+        
         <p>{{error}}</p>
+
     </div>
 </template>
 

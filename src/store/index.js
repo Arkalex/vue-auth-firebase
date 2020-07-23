@@ -42,6 +42,13 @@ export default new Vuex.Store({
       auth.signInWithEmailAndPassword(usuario.email, usuario.password)
         .then(res => {
           console.log(res)
+          const usuarioLogeado = {
+            email: res.user.email,
+            uid: res.user.uid
+          }
+          commit('setUsuario', usuarioLogeado);
+
+          router.push('/')
         })
         .catch(err => {
           console.log(err);
