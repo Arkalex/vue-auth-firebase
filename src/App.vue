@@ -4,10 +4,21 @@
       <router-link to="/">Inicio</router-link> |
       <router-link to="/registro">Registro</router-link> |
       <router-link to="/acceso">Login</router-link>
+      <button @click="cerrarSesion">Logout</button>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import {mapActions} from 'vuex';
+
+export default {
+  methods: {
+    ...mapActions(['cerrarSesion'])
+  }  
+}
+</script>
 
 <style>
 #app {
