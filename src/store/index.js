@@ -9,7 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     usuario: null,
-    errores: null
+    error: null
   },
   mutations: {
     setUsuario(state, payload) {
@@ -63,6 +63,15 @@ export default new Vuex.Store({
     },
     detectarUsuario({commit}, usuario) {
       commit('setUsuario', usuario)
+    }
+  },
+  getters: {
+    existeUsuario(state) {
+      if(state.usuario === null) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
   modules: {
