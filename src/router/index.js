@@ -21,6 +21,12 @@ Vue.use(VueRouter)
     path: '/acceso',
     name: 'Acceso',
     component: () => import(/* webpackChunkName: "about" */ '../views/Acceso.vue')
+  },
+  {
+    path: '/editar/:id',
+    name: 'Editar',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Editar.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 

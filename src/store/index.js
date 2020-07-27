@@ -9,7 +9,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     usuario: null,
-    error: null
+    error: null,
+    tareas: [],
+    tarea: {nombre: '', id: ''}
   },
   mutations: {
     setUsuario(state, payload) {
@@ -17,6 +19,12 @@ export default new Vuex.Store({
     },
     setError(state, payload){
       state.error = payload;
+    },
+    setTareas(state, payload) {
+      state.tareas = payload;
+    },
+    setTarea(state, payload) {
+      state.tarea = payload;
     }
   },
   actions: {
@@ -71,7 +79,38 @@ export default new Vuex.Store({
     },
     detectarUsuario({commit}, usuario) {
       commit('setUsuario', usuario)
-    }
+    },
+    getTareas({commit, state}){
+      const tareas = [];
+      db.collection(state.usuario.email).get()
+        .then(res => {
+          res.forEach(doc => {
+            let tarea = doc.data()
+            tarea.id = doc.id
+            tareas.push(tarea)
+          })
+
+          commit('setTareas', tareas)
+        })
+    },
+    getTarea({commit, state}, id){
+      db.collection(state.usuario.email).doc(id).get()
+      .then(doc => {
+          // console.log(doc.data())
+          // console.log(doc.id)
+          let tarea = doc.data()
+          tarea.id = doc.id
+          commit('setTarea', tarea)
+      })
+  },
+  editarTarea({commit, state}, tarea){
+      db.collection(state.usuario.email).doc(tarea.id).update({
+          nombre: tarea.nombre
+      })
+      .then(() => {
+          router.push({name: 'Inicio'})
+      })
+  }
   },
   getters: {
     existeUsuario(state) {
