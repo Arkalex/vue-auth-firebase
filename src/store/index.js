@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import router from '../router';
 
 Vue.use(Vuex)
@@ -28,9 +28,13 @@ export default new Vuex.Store({
             email: res.user.email,
             uid: res.user.uid
           }
-          commit('setUsuario', usuarioCreado);
-
-          router.push('/')
+          db.collection(res.user.email).add({
+            nombre: 'test task'
+          }).then(doc => {
+            commit('setUsuario', usuarioCreado);
+            router.push('/')
+          }).catch(err => console.log(err));
+          
 
         })
         .catch( err => {
@@ -46,9 +50,13 @@ export default new Vuex.Store({
             email: res.user.email,
             uid: res.user.uid
           }
-          commit('setUsuario', usuarioLogeado);
 
-          router.push('/')
+          
+            commit('setUsuario', usuarioLogeado);
+            router.push('/')
+          
+
+          
         })
         .catch(err => {
           console.log(err);
