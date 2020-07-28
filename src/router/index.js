@@ -27,6 +27,12 @@ Vue.use(VueRouter)
     name: 'Editar',
     component: () => import(/* webpackChunkName: "about" */ '../views/Editar.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/agregar',
+    name: 'Agregar',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Agregar.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
