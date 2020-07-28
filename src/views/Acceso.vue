@@ -7,14 +7,16 @@
                 type="email" 
                 placeholder="Ingrese email"
                 v-model=email
+                class="form-control mb-2"
             >
 
             <input 
                 type="password" 
                 placeholder="Ingrese password"
                 v-model=pass
+                class="form-control mb-2"
             >
-            <button type="submit">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
         
         <p>{{error}}</p>

@@ -1,10 +1,10 @@
 <template>
     <div>
         <h1>Editar</h1>
-        {{id}} - {{tarea}}
+        
         <form @submit.prevent="editarTarea(tarea)">
-            <input type="text" v-model="tarea.nombre">
-            <button>Editar</button>
+            <input type="text" v-model="tarea.nombre" class="form-control mb-2">
+            <button class="btn btn-warning">Editar</button>
         </form>
     </div>
 </template>
